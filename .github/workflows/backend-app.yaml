@@ -31,13 +31,13 @@ jobs:
 
       - name: Build Docker Image 
         run: |
-          docker build -t ${{ vars.ECR_REGISTRY }}/flask-app:${{ github.sha }} ./backend
-          docker tag ${{ vars.ECR_REGISTRY }}/flask-app:${{ github.sha }} ${{ vars.ECR_REGISTRY }}/flask-app:latest
+          docker build -t ${{ vars.ECR_REGISTRY }}/flask-app-1:${{ github.sha }} ./backend
+          docker tag ${{ vars.ECR_REGISTRY }}/flask-app-1:${{ github.sha }} ${{ vars.ECR_REGISTRY }}/flask-app:latest
 
       - name: Push Docker Image 
         run: |
-          docker push ${{ vars.ECR_REGISTRY }}/flask-app:${{ github.sha }}
-          docker push ${{ vars.ECR_REGISTRY }}/flask-app:latest
+          docker push ${{ vars.ECR_REGISTRY }}/flask-app-1:${{ github.sha }}
+          docker push ${{ vars.ECR_REGISTRY }}/flask-app-1:latest
 
      
   
@@ -79,7 +79,7 @@ jobs:
 
       - name: Deployment + Service + Ingress
         run: |
-         sed -i 's@CONTAINER_IMAGE@'"${{ vars.ECR_REGISTRY }}/flask-app:${{ github.sha }}"'@' k8s/backend/deployment.yaml
+         sed -i 's@CONTAINER_IMAGE@'"${{ vars.ECR_REGISTRY }}/flask-app-1:${{ github.sha }}"'@' k8s/backend/deployment.yaml
          kubectl apply -f k8s/backend/configmap.yaml
          kubectl apply -f k8s/backend/service-account.yaml
          kubectl apply -f k8s/backend/deployment.yaml
