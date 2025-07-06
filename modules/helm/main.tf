@@ -15,7 +15,7 @@ provider "kubernetes" {
 provider "helm" {
   kubernetes {
     host                   = var.cluster_endpoint
-   cluster_ca_certificate = base64decode(var.cluster_certificate_authority_data)
+    cluster_ca_certificate = base64decode(var.cluster_certificate_authority_data)
     token                  = data.aws_eks_cluster_auth.cluster.token
   }
 }
@@ -85,6 +85,13 @@ resource "kubernetes_namespace" "fargate_namespace" {
   }
 }
 
+# Resource: Kubernetes Namespace backend
+resource "kubernetes_namespace" "backend" {
+  metadata {
+    name = "backend"
+  }
+}
+
 # Helm to install and setup prometheus and grafana 
 resource "helm_release" "prometheus_grafana_stack" {
   name       = "kube-prometheus-stack"
@@ -92,7 +99,6 @@ resource "helm_release" "prometheus_grafana_stack" {
   chart      = "kube-prometheus-stack"
   version    = "58.0.0"
   namespace  = kubernetes_namespace.monitoring.metadata[0].name
-  #namespace  = var.kubernetes_namespace_monitoring
   timeout    = 600
   
   # Retry mechanism
