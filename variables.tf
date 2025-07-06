@@ -1,7 +1,7 @@
 variable "region" {
     description = "Region"
     type = string
-    default = "ap-northeast-3"
+    default = "us-west-1"
 
 }
 
@@ -27,7 +27,7 @@ variable "private_subnet" {
 variable "availability_zone" {
     description = "Availability Zones"
     type = list(string)
-    default     = ["ap-northeast-3a", "ap-northeast-3b"]
+    default     = ["us-west-1a", "us-west-1b"]
 }
 
 variable "name" {
