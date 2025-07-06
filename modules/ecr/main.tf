@@ -1,6 +1,6 @@
 # ECR Repository
 resource "aws_ecr_repository" "flask_app" {
-  name = "flask-app"
+  name = "flask-app-1"
 
   image_scanning_configuration {
     scan_on_push = true
@@ -12,7 +12,7 @@ resource "aws_ecr_repository" "flask_app" {
 }
 
 resource "aws_ecr_repository" "react_app" {
-  name = "react-app"
+  name = "react-app-1"
 
   image_scanning_configuration {
     scan_on_push = true
