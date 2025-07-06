@@ -62,8 +62,7 @@ module "eks" {
   security_group_ids  = [module.vpc.eks_security_group_id]
 
   depends_on = [
-    module.vpc,
-    module.namespace
+    module.vpc
   ]
 }
 
