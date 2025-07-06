@@ -27,7 +27,7 @@ variable "private_subnet" {
 variable "availability_zone" {
     description = "Availability Zones"
     type = list(string)
-    default     = ["us-west-1a", "us-west-1b"]
+    default     = ["us-west-1a", "us-west-1c"]
 }
 
 variable "name" {
