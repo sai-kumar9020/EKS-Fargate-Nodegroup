@@ -79,9 +79,10 @@ jobs:
 
       - name: Deployment + Service + Ingress
         run: |
-         sed -i 's@CONTAINER_IMAGE@'"${{ vars.ECR_REGISTRY }}/react-app:${{ github.sha }}"'@' k8s-manifest/frontend/deployment/frontend-deployment.yaml
-         kubectl apply -f k8s-manifest/frontend/deployment/frontend-deployment.yaml
-         kubectl apply -f k8s-manifest/frontend/deployment/ingress-frontend.yaml
+         sed -i 's@CONTAINER_IMAGE@'"${{ vars.ECR_REGISTRY }}/react-app:${{ github.sha }}"'@' k8s/frontend/deployment.yaml
+         kubectl apply -f k8s/frontend/deployment.yaml
+         kubectl apply -f k8s/frontend/service.yaml
+         kubectl apply -f k8s/frontend/ingress.yaml
 
 
 
