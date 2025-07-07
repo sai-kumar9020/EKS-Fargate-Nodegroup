@@ -32,7 +32,7 @@ jobs:
       - name: Build Docker Image 
         run: |
           docker build -t ${{ vars.ECR_REGISTRY }}/react-app-1:${{ github.sha }} ./frontend
-          docker tag ${{ vars.ECR_REGISTRY }}/react-app-1:${{ github.sha }} ${{ vars.ECR_REGISTRY }}/react-app:latest
+          docker tag ${{ vars.ECR_REGISTRY }}/react-app-1:${{ github.sha }} ${{ vars.ECR_REGISTRY }}/react-app-1:latest
 
       - name: Push Docker Image 
         run: |
@@ -48,7 +48,7 @@ jobs:
 
     env:
       CLUSTER_NAME: test-eks
-      AWS_REGION: us-east-1
+      AWS_REGION: us-west-1
       NAMESPACE: default
 
     steps:
