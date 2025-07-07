@@ -32,7 +32,7 @@ jobs:
       - name: Build Docker Image 
         run: |
           docker build -t ${{ vars.ECR_REGISTRY }}/flask-app-1:${{ github.sha }} ./backend
-          docker tag ${{ vars.ECR_REGISTRY }}/flask-app-1:${{ github.sha }} ${{ vars.ECR_REGISTRY }}/flask-app:latest
+          docker tag ${{ vars.ECR_REGISTRY }}/flask-app-1:${{ github.sha }} ${{ vars.ECR_REGISTRY }}/flask-app-1:latest
 
       - name: Push Docker Image 
         run: |
