@@ -86,7 +86,7 @@ jobs:
          kubectl apply -f k8s/backend/service.yaml
          kubectl apply -f k8s/backend/ingress.yaml
          kubectl get pods -n backend
-
+         kubectl describe pod/backend-57dd9dd6d9-nhvfz -n backend
 
 
   
