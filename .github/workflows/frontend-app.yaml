@@ -31,13 +31,13 @@ jobs:
 
       - name: Build Docker Image 
         run: |
-          docker build -t ${{ vars.ECR_REGISTRY }}/react-app:${{ github.sha }} ./frontend
-          docker tag ${{ vars.ECR_REGISTRY }}/react-app:${{ github.sha }} ${{ vars.ECR_REGISTRY }}/react-app:latest
+          docker build -t ${{ vars.ECR_REGISTRY }}/react-app-1:${{ github.sha }} ./frontend
+          docker tag ${{ vars.ECR_REGISTRY }}/react-app-1:${{ github.sha }} ${{ vars.ECR_REGISTRY }}/react-app-1:latest
 
       - name: Push Docker Image 
         run: |
-          docker push ${{ vars.ECR_REGISTRY }}/react-app:${{ github.sha }}
-          docker push ${{ vars.ECR_REGISTRY }}/react-app:latest
+          docker push ${{ vars.ECR_REGISTRY }}/react-app-1:${{ github.sha }}
+          docker push ${{ vars.ECR_REGISTRY }}/react-app-1:latest
 
      
   
@@ -79,9 +79,10 @@ jobs:
 
       - name: Deployment + Service + Ingress
         run: |
-         sed -i 's@CONTAINER_IMAGE@'"${{ vars.ECR_REGISTRY }}/react-app:${{ github.sha }}"'@' k8s-manifest/frontend/deployment/frontend-deployment.yaml
-         kubectl apply -f k8s-manifest/frontend/deployment/frontend-deployment.yaml
-         kubectl apply -f k8s-manifest/frontend/deployment/ingress-frontend.yaml
+         sed -i 's@CONTAINER_IMAGE@'"${{ vars.ECR_REGISTRY }}/react-app-1:${{ github.sha }}"'@' k8s/frontend/deployment.yaml
+         kubectl apply -f k8s/frontend/deployment.yaml
+         kubectl apply -f k8s/frontend/service.yaml
+         kubectl apply -f k8s/frontend/ingress.yaml
 
 
 
