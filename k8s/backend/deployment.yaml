@@ -24,11 +24,6 @@ spec:
           value: "rds!cluster-ffefb967-eeb1-4e16-bc74-6add4be3e431"
         - name: AWS_REGION
           value: "us-west-1"
-       # - name: JWT_SECRET
-        #  valueFrom:
-         #   secretKeyRef:
-          #    name: backend-secrets
-           #   key: jwt 
         - name: DB_HOST
           valueFrom:
             configMapKeyRef:
